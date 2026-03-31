@@ -1,0 +1,9 @@
+{
+  "recipes": [
+    { "weapon": "moo_turret", "item": "homing_scope", "result": "auto_sentry_v2", "name": "全自動哨兵 V2" },
+    { "weapon": "claw_swipe", "item": "speed_belt", "result": "shadow_dance", "name": "影分身亂舞" },
+    { "weapon": "tail_spin", "item": "amp_crystal", "result": "storm_tail", "name": "暴風尾擊" },
+    { "weapon": "spread_shot", "item": "split_core", "result": "supernova", "name": "超新星爆發" },
+    { "weapon": "shield_pulse", "item": "frost_heart", "result": "absolute_zero", "name": "絕對零度領域" }
+  ]
+}

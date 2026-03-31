@@ -1,0 +1,34 @@
+{
+  "characters": [
+    {
+      "id": "moo",
+      "name": "ムーさん",
+      "archetype": "tactician",
+      "phase": 1,
+      "baseStats": { "hp": 100, "speed": 120, "armor": 0, "pickupRange": 40 },
+      "startWeapon": "moo_turret",
+      "color": "0xFF9800",
+      "description": "佈陣型 — 戰略性配置"
+    },
+    {
+      "id": "nyao",
+      "name": "にゃおぬこ",
+      "archetype": "aggressor",
+      "phase": 1,
+      "baseStats": { "hp": 80, "speed": 160, "armor": 0, "pickupRange": 35 },
+      "startWeapon": "claw_swipe",
+      "color": "0xE91E63",
+      "description": "壓迫型 — 高速近戰"
+    },
+    {
+      "id": "abarenboo",
+      "name": "あばれんぼー",
+      "archetype": "rhythm",
+      "phase": 1,
+      "baseStats": { "hp": 120, "speed": 130, "armor": 2, "pickupRange": 45 },
+      "startWeapon": "tail_spin",
+      "color": "0x4CAF50",
+      "description": "節奏型 — 蓄力掃擊"
+    }
+  ]
+}

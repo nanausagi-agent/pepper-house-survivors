@@ -1,0 +1,14 @@
+{
+  "waves": [
+    { "time": 0, "enemies": [{ "type": "grunt_a", "rate": 0.5, "max": 20 }] },
+    { "time": 30, "enemies": [{ "type": "grunt_a", "rate": 0.8, "max": 30 }] },
+    { "time": 60, "enemies": [{ "type": "grunt_a", "rate": 1.0, "max": 40 }, { "type": "grunt_b", "rate": 0.2, "max": 8 }] },
+    { "time": 120, "enemies": [{ "type": "grunt_a", "rate": 1.2, "max": 50 }, { "type": "grunt_b", "rate": 0.5, "max": 15 }, { "type": "fast", "rate": 0.15, "max": 5 }] },
+    { "time": 180, "enemies": [{ "type": "grunt_a", "rate": 1.5, "max": 60 }, { "type": "grunt_b", "rate": 0.8, "max": 25 }, { "type": "fast", "rate": 0.3, "max": 12 }] },
+    { "time": 300, "enemies": [{ "type": "grunt_a", "rate": 2.0, "max": 80 }, { "type": "grunt_b", "rate": 1.0, "max": 30 }, { "type": "fast", "rate": 0.5, "max": 20 }, { "type": "tank", "rate": 0.1, "max": 5 }] },
+    { "time": 420, "enemies": [{ "type": "grunt_a", "rate": 2.5, "max": 100 }, { "type": "grunt_b", "rate": 1.2, "max": 40 }, { "type": "fast", "rate": 0.8, "max": 25 }, { "type": "tank", "rate": 0.2, "max": 8 }] },
+    { "time": 600, "enemies": [{ "type": "grunt_a", "rate": 3.0, "max": 120 }, { "type": "grunt_b", "rate": 1.5, "max": 50 }, { "type": "fast", "rate": 1.0, "max": 30 }, { "type": "tank", "rate": 0.3, "max": 10 }, { "type": "shooter", "rate": 0.2, "max": 8 }] },
+    { "time": 750, "enemies": [{ "type": "grunt_a", "rate": 4.0, "max": 150 }, { "type": "grunt_b", "rate": 2.0, "max": 60 }, { "type": "fast", "rate": 1.5, "max": 40 }, { "type": "tank", "rate": 0.5, "max": 15 }] },
+    { "time": 870, "enemies": [{ "type": "grunt_a", "rate": 5.0, "max": 200 }, { "type": "fast", "rate": 2.0, "max": 50 }, { "type": "tank", "rate": 0.8, "max": 20 }] }
+  ]
+}

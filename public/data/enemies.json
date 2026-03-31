@@ -1,0 +1,10 @@
+{
+  "enemies": [
+    { "type": "grunt_a", "name": "雜魚A", "hp": 20, "speed": 50, "damage": 5, "radius": 7, "xpValue": 1, "tier": 0 },
+    { "type": "grunt_b", "name": "雜魚B", "hp": 40, "speed": 60, "damage": 8, "radius": 8, "xpValue": 2, "tier": 1 },
+    { "type": "fast", "name": "快速型", "hp": 10, "speed": 120, "damage": 4, "radius": 6, "xpValue": 2, "tier": 2 },
+    { "type": "tank", "name": "坦克型", "hp": 100, "speed": 30, "damage": 15, "radius": 12, "xpValue": 5, "tier": 3 },
+    { "type": "shooter", "name": "射手型", "hp": 30, "speed": 55, "damage": 6, "radius": 7, "xpValue": 3, "tier": 4 },
+    { "type": "elite", "name": "精英怪", "hp": 500, "speed": 45, "damage": 20, "radius": 20, "xpValue": 30, "tier": 5 }
+  ]
+}

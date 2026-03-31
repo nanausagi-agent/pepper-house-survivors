@@ -1,0 +1,44 @@
+{
+  "weapons": [
+    {
+      "id": "moo_turret", "name": "吉祥物砲台", "nameEn": "Mascot Turret",
+      "owner": "moo", "type": "turret", "pattern": "auto_aim",
+      "baseDamage": 8, "baseCooldown": 800, "baseRange": 80, "maxLevel": 8
+    },
+    {
+      "id": "claw_swipe", "name": "連射爪擊", "nameEn": "Claw Swipe",
+      "owner": "nyao", "type": "melee", "pattern": "melee",
+      "baseDamage": 5, "baseCooldown": 300, "baseRange": 40, "maxLevel": 8
+    },
+    {
+      "id": "tail_spin", "name": "尾巴迴旋", "nameEn": "Tail Spin",
+      "owner": "abarenboo", "type": "area", "pattern": "area",
+      "baseDamage": 15, "baseCooldown": 1500, "baseRange": 80, "maxLevel": 8
+    },
+    {
+      "id": "spread_shot", "name": "彈幕花火", "nameEn": "Spread Shot",
+      "owner": null, "type": "projectile", "pattern": "spread",
+      "baseDamage": 10, "baseCooldown": 600, "baseRange": 200, "maxLevel": 8
+    },
+    {
+      "id": "shield_pulse", "name": "護盾衝擊", "nameEn": "Shield Pulse",
+      "owner": null, "type": "area", "pattern": "orbit",
+      "baseDamage": 8, "baseCooldown": 1000, "baseRange": 60, "maxLevel": 8
+    },
+    {
+      "id": "laser_beam", "name": "雷射光束", "nameEn": "Laser Beam",
+      "owner": null, "type": "beam", "pattern": "beam",
+      "baseDamage": 25, "baseCooldown": 2000, "baseRange": 300, "maxLevel": 8
+    },
+    {
+      "id": "bike_trail", "name": "重機軌跡", "nameEn": "Bike Trail",
+      "owner": "minori", "type": "trail", "pattern": "trail",
+      "baseDamage": 12, "baseCooldown": 100, "baseRange": 20, "maxLevel": 8
+    },
+    {
+      "id": "retro_summon", "name": "懷舊召喚", "nameEn": "Retro Summon",
+      "owner": "pepper", "type": "projectile", "pattern": "auto_aim",
+      "baseDamage": 10, "baseCooldown": 700, "baseRange": 150, "maxLevel": 8
+    }
+  ]
+}
