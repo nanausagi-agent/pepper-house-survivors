@@ -1,0 +1,74 @@
+{
+  "game.title": "\u80e1\u6912\u5bb6\u9632\u885b\u6226",
+  "game.subtitle": "Pepper House Survivors",
+
+  "menu.start": "\u30b2\u30fc\u30e0\u958b\u59cb",
+  "menu.select_character": "\u30ad\u30e3\u30e9\u30af\u30bf\u30fc\u9078\u629e",
+  "menu.controls": "\u64cd\u4f5c\u8aac\u660e",
+  "menu.instructions": "WASD\u3067\u79fb\u52d5 | \u30de\u30a6\u30b9\u3067\u7167\u6e96 | \u30af\u30ea\u30c3\u30af\u3067\u5c04\u6483",
+
+  "char.moo.name": "\u30e0\u30fc\u3055\u3093",
+  "char.moo.desc": "\u4f48\u9663\u578b \u2014 \u6226\u7565\u7684\u914d\u7f6e",
+  "char.nyao.name": "\u306b\u3083\u304a\u306c\u3053",
+  "char.nyao.desc": "\u58d3\u8feb\u578b \u2014 \u9ad8\u901f\u8fd1\u6226",
+  "char.abarenboo.name": "\u3042\u3070\u308c\u3093\u307c\u30fc",
+  "char.abarenboo.desc": "\u7bc0\u594f\u578b \u2014 \u84c4\u529b\u6383\u6483",
+
+  "hud.level": "Lv.{level}",
+  "hud.kills": "\u6483\u7834: {kills}",
+  "hud.hp": "HP",
+
+  "levelup.title": "\u30ec\u30d9\u30eb\u30a2\u30c3\u30d7\uff01",
+  "levelup.pick": "3\u3064\u304b\u3089\u9078\u3093\u3067\u306d",
+  "levelup.damage": "\u653b\u6483\u529b +15%",
+  "levelup.damage.desc": "\u653b\u6483\u529b\u30a2\u30c3\u30d7",
+  "levelup.speed": "\u79fb\u52d5\u901f\u5ea6 +10%",
+  "levelup.speed.desc": "\u79fb\u52d5\u901f\u5ea6\u30a2\u30c3\u30d7",
+  "levelup.maxhp": "HP +20",
+  "levelup.maxhp.desc": "\u6700\u5927HP\u30a2\u30c3\u30d7",
+  "levelup.firerate": "\u653b\u6483\u901f\u5ea6 +12%",
+  "levelup.firerate.desc": "\u653b\u6483\u901f\u5ea6\u30a2\u30c3\u30d7",
+  "levelup.pickup": "\u78c1\u529b +20%",
+  "levelup.pickup.desc": "\u62fe\u53d6\u7bc4\u56f2\u30a2\u30c3\u30d7",
+  "levelup.heal": "\u56de\u5fa9 30%",
+  "levelup.heal.desc": "HP\u56de\u5fa9",
+
+  "result.survived": "\u751f\u5b58\u6210\u529f\uff01",
+  "result.gameover": "\u30b2\u30fc\u30e0\u30aa\u30fc\u30d0\u30fc",
+  "result.time": "\u751f\u5b58\u6642\u9593: {time}",
+  "result.kills": "\u6483\u7834\u6570: {kills}",
+  "result.level": "\u5230\u9054\u30ec\u30d9\u30eb: Lv.{level}",
+  "result.retry": "\u3082\u3046\u4e00\u56de",
+  "result.menu": "\u30bf\u30a4\u30c8\u30eb\u3078",
+
+  "pause.title": "\u30dd\u30fc\u30ba\u4e2d",
+  "pause.resume": "\u7d9a\u3051\u308b",
+  "pause.controls": "\u64cd\u4f5c\u8aac\u660e",
+  "pause.quit": "\u30bf\u30a4\u30c8\u30eb\u306b\u623b\u308b",
+
+  "controls.title": "\u64cd\u4f5c\u8aac\u660e",
+  "controls.wasd": "WASD \u2014 \u79fb\u52d5",
+  "controls.mouse": "\u30de\u30a6\u30b9 \u2014 \u7167\u6e96",
+  "controls.click": "\u5de6\u30af\u30ea\u30c3\u30af \u2014 \u5c04\u6483",
+  "controls.space": "\u30b9\u30da\u30fc\u30b9 \u2014 \u5fc5\u6bba\u6280",
+  "controls.esc": "ESC \u2014 \u30dd\u30fc\u30ba",
+  "controls.close": "\u9589\u3058\u308b",
+
+  "tutorial.hint": "WASD:\u79fb\u52d5 | \u30de\u30a6\u30b9:\u7167\u6e96 | \u30af\u30ea\u30c3\u30af:\u5c04\u6483 | SPACE:\u5fc5\u6bba\u6280",
+
+  "boot.loading": "\u8aad\u307f\u8fbc\u307f\u4e2d...",
+  "boot.ready": "\u6e96\u5099\u5b8c\u4e86\uff01",
+
+  "ultimate.moo": "\u5168\u7832\u53f0\u6589\u5c04",
+  "ultimate.nyao": "\u77ac\u9593\u7a81\u9032",
+  "ultimate.abarenboo": "\u5c3e\u5df4\u7121\u9650\u4f38\u9577",
+
+  "weapon.moo_turret": "\u5409\u7965\u7269\u7832\u53f0",
+  "weapon.claw_swipe": "\u9023\u5c04\u722a\u6483",
+  "weapon.tail_spin": "\u5c3e\u5df4\u8ff4\u65cb",
+  "weapon.spread_shot": "\u5f3e\u5e55\u82b1\u706b",
+  "weapon.shield_pulse": "\u8b77\u76fe\u885d\u6483",
+  "weapon.laser_beam": "\u96f7\u5c04\u5149\u675f",
+  "weapon.bike_trail": "\u91cd\u6a5f\u8ecc\u8de1",
+  "weapon.retro_summon": "\u61f7\u820a\u53ec\u559a"
+}

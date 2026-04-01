@@ -1,44 +1,52 @@
 {
   "weapons": [
     {
-      "id": "moo_turret", "name": "吉祥物砲台", "nameEn": "Mascot Turret",
+      "id": "moo_turret", "name": "\u5409\u7965\u7269\u7832\u53f0", "nameEn": "Mascot Turret",
       "owner": "moo", "type": "turret", "pattern": "auto_aim",
-      "baseDamage": 8, "baseCooldown": 800, "baseRange": 80, "maxLevel": 8
+      "baseDamage": 8, "baseCooldown": 800, "baseRange": 80, "maxLevel": 8,
+      "fireMode": 0, "usesAim": false
     },
     {
-      "id": "claw_swipe", "name": "連射爪擊", "nameEn": "Claw Swipe",
+      "id": "claw_swipe", "name": "\u9023\u5c04\u722a\u6483", "nameEn": "Claw Swipe",
       "owner": "nyao", "type": "melee", "pattern": "melee",
-      "baseDamage": 5, "baseCooldown": 300, "baseRange": 40, "maxLevel": 8
+      "baseDamage": 5, "baseCooldown": 300, "baseRange": 40, "maxLevel": 8,
+      "fireMode": 0, "usesAim": false
     },
     {
-      "id": "tail_spin", "name": "尾巴迴旋", "nameEn": "Tail Spin",
+      "id": "tail_spin", "name": "\u5c3e\u5df4\u8ff4\u65cb", "nameEn": "Tail Spin",
       "owner": "abarenboo", "type": "area", "pattern": "area",
-      "baseDamage": 15, "baseCooldown": 1500, "baseRange": 80, "maxLevel": 8
+      "baseDamage": 15, "baseCooldown": 1500, "baseRange": 80, "maxLevel": 8,
+      "fireMode": 0, "usesAim": false
     },
     {
-      "id": "spread_shot", "name": "彈幕花火", "nameEn": "Spread Shot",
+      "id": "spread_shot", "name": "\u5f3e\u5e55\u82b1\u706b", "nameEn": "Spread Shot",
       "owner": null, "type": "projectile", "pattern": "spread",
-      "baseDamage": 10, "baseCooldown": 600, "baseRange": 200, "maxLevel": 8
+      "baseDamage": 10, "baseCooldown": 600, "baseRange": 200, "maxLevel": 8,
+      "fireMode": 3, "usesAim": true
     },
     {
-      "id": "shield_pulse", "name": "護盾衝擊", "nameEn": "Shield Pulse",
+      "id": "shield_pulse", "name": "\u8b77\u76fe\u885d\u6483", "nameEn": "Shield Pulse",
       "owner": null, "type": "area", "pattern": "orbit",
-      "baseDamage": 8, "baseCooldown": 1000, "baseRange": 60, "maxLevel": 8
+      "baseDamage": 8, "baseCooldown": 1000, "baseRange": 60, "maxLevel": 8,
+      "fireMode": 0, "usesAim": false
     },
     {
-      "id": "laser_beam", "name": "雷射光束", "nameEn": "Laser Beam",
+      "id": "laser_beam", "name": "\u96f7\u5c04\u5149\u675f", "nameEn": "Laser Beam",
       "owner": null, "type": "beam", "pattern": "beam",
-      "baseDamage": 25, "baseCooldown": 2000, "baseRange": 300, "maxLevel": 8
+      "baseDamage": 25, "baseCooldown": 2000, "baseRange": 300, "maxLevel": 8,
+      "fireMode": 1, "usesAim": true
     },
     {
-      "id": "bike_trail", "name": "重機軌跡", "nameEn": "Bike Trail",
+      "id": "bike_trail", "name": "\u91cd\u6a5f\u8ecc\u8de1", "nameEn": "Bike Trail",
       "owner": "minori", "type": "trail", "pattern": "trail",
-      "baseDamage": 12, "baseCooldown": 100, "baseRange": 20, "maxLevel": 8
+      "baseDamage": 12, "baseCooldown": 100, "baseRange": 20, "maxLevel": 8,
+      "fireMode": 0, "usesAim": false
     },
     {
-      "id": "retro_summon", "name": "懷舊召喚", "nameEn": "Retro Summon",
+      "id": "retro_summon", "name": "\u61f7\u820a\u53ec\u559a", "nameEn": "Retro Summon",
       "owner": "pepper", "type": "projectile", "pattern": "auto_aim",
-      "baseDamage": 10, "baseCooldown": 700, "baseRange": 150, "maxLevel": 8
+      "baseDamage": 10, "baseCooldown": 700, "baseRange": 150, "maxLevel": 8,
+      "fireMode": 1, "usesAim": true
     }
   ]
 }
