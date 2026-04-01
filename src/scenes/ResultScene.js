@@ -1,5 +1,8 @@
 import Phaser from 'phaser';
 import { CharacterRegistry } from '../characters/CharacterRegistry.js';
+import { t } from '../i18n.js';
+
+const FONT = "'DotGothic16', monospace";
 
 export class ResultScene extends Phaser.Scene {
   constructor() {
@@ -19,11 +22,13 @@ export class ResultScene extends Phaser.Scene {
 
     // Result status
     const survived = d.survived;
-    const statusText = survived ? '🌶️ SURVIVED!' : '💀 GAME OVER';
+    const statusText = survived
+      ? '🌶️ ' + t('result.survived')
+      : '💀 ' + t('result.gameover');
     const statusColor = survived ? '#FFD700' : '#FF4444';
 
     this.add.text(width / 2, 80, statusText, {
-      fontSize: '40px', fontFamily: 'monospace', color: statusColor,
+      fontSize: '36px', fontFamily: FONT, color: statusColor,
       stroke: '#000', strokeThickness: 5,
     }).setOrigin(0.5);
 
@@ -34,8 +39,8 @@ export class ResultScene extends Phaser.Scene {
       circle.fillStyle(charDef.color, 1);
       circle.fillCircle(width / 2, 160, 30);
 
-      this.add.text(width / 2, 205, charDef.name, {
-        fontSize: '20px', fontFamily: 'monospace', color: '#ffffff',
+      this.add.text(width / 2, 205, t(`char.${d.character}.name`), {
+        fontSize: '20px', fontFamily: FONT, color: '#ffffff',
       }).setOrigin(0.5);
     }
 
@@ -47,14 +52,14 @@ export class ResultScene extends Phaser.Scene {
     const timeStr = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
 
     const stats = [
-      `存活時間: ${timeStr}`,
-      `撃殺数: ${d.kills || 0}`,
-      `到達レベル: Lv.${d.level || 1}`,
+      t('result.time', { time: timeStr }),
+      t('result.kills', { kills: d.kills || 0 }),
+      t('result.level', { level: d.level || 1 }),
     ];
 
     stats.forEach((line, i) => {
       this.add.text(width / 2, 260 + i * 35, line, {
-        fontSize: '18px', fontFamily: 'monospace', color: '#cccccc',
+        fontSize: '18px', fontFamily: FONT, color: '#cccccc',
       }).setOrigin(0.5);
     });
 
@@ -63,8 +68,8 @@ export class ResultScene extends Phaser.Scene {
       .setStrokeStyle(2, 0x44AA44)
       .setInteractive({ useHandCursor: true });
 
-    this.add.text(width / 2, height - 120, '🔄 もう一度プレイ', {
-      fontSize: '18px', fontFamily: 'monospace', color: '#44FF44',
+    this.add.text(width / 2, height - 120, '🔄 ' + t('result.retry'), {
+      fontSize: '18px', fontFamily: FONT, color: '#44FF44',
     }).setOrigin(0.5);
 
     retryBtn.on('pointerover', () => retryBtn.setFillStyle(0x336633));
@@ -78,8 +83,8 @@ export class ResultScene extends Phaser.Scene {
       .setStrokeStyle(2, 0x4444AA)
       .setInteractive({ useHandCursor: true });
 
-    this.add.text(width / 2, height - 60, 'キャラ選択に戻る', {
-      fontSize: '14px', fontFamily: 'monospace', color: '#8888FF',
+    this.add.text(width / 2, height - 60, t('result.menu'), {
+      fontSize: '14px', fontFamily: FONT, color: '#8888FF',
     }).setOrigin(0.5);
 
     menuBtn.on('pointerover', () => menuBtn.setFillStyle(0x333366));

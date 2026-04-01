@@ -14,6 +14,9 @@ import { PickupSystem } from '../systems/PickupSystem.js';
 import { ExperienceSystem } from '../systems/ExperienceSystem.js';
 import { createCleanupSystem } from '../systems/CleanupSystem.js';
 import { createRenderSystem } from '../systems/RenderSystem.js';
+import { createMouseAimSystem } from '../systems/MouseAimSystem.js';
+import { createManualFireSystem } from '../systems/ManualFireSystem.js';
+import { createUltimateSystem } from '../systems/UltimateSystem.js';
 import { SpatialHash } from '../managers/SpatialHash.js';
 import { WaveManager } from '../managers/WaveManager.js';
 import { eventBus } from '../managers/EventBus.js';
@@ -68,8 +71,15 @@ export class GameScene extends Phaser.Scene {
     this.renderSystem = createRenderSystem(this, this.world);
 
     // Create all systems
+    this.mouseAimSystem = createMouseAimSystem(this);
+    this.manualFireSystem = createManualFireSystem(this);
+    this.ultimateSystem = createUltimateSystem(this);
+
     this.systems = [
       createInputSystem(this),
+      this.mouseAimSystem,
+      this.manualFireSystem,
+      this.ultimateSystem,
       WeaponSystem,
       MovementSystem,
       EnemyAISystem,
@@ -111,6 +121,22 @@ export class GameScene extends Phaser.Scene {
       );
       this.cameras.main.shake(80, 0.005);
     });
+
+    // ESC pause
+    this.input.keyboard.on('keydown-ESC', () => {
+      if (this.world.gameOver) return;
+      this.world.paused = true;
+      this.scene.pause();
+      this.scene.launch('PauseScene');
+    });
+
+    // Resume handler
+    this.events.on('resume', () => {
+      this.world.paused = false;
+    });
+
+    // Tutorial hint (first 4 seconds)
+    this.showTutorialHint();
 
     eventBus.on('game:over', () => {
       this.time.delayedCall(500, () => {
@@ -204,6 +230,23 @@ export class GameScene extends Phaser.Scene {
       { time: 300, enemies: [{ type: 'grunt_a', rate: 2.0, max: 80 }, { type: 'grunt_b', rate: 1.0, max: 30 }, { type: 'fast', rate: 0.5, max: 20 }, { type: 'tank', rate: 0.1, max: 5 }] },
       { time: 600, enemies: [{ type: 'grunt_a', rate: 3.0, max: 100 }, { type: 'grunt_b', rate: 1.5, max: 50 }, { type: 'fast', rate: 1.0, max: 30 }, { type: 'tank', rate: 0.3, max: 10 }] },
     ];
+  }
+
+  showTutorialHint() {
+    const hint = this.add.text(
+      this.cameras.main.width / 2, this.cameras.main.height - 60,
+      'WASD:移動 | マウス:照準 | クリック:射撃 | SPACE:必殺技',
+      {
+        fontSize: '13px', fontFamily: "'DotGothic16', monospace", color: '#ffffff',
+        stroke: '#000', strokeThickness: 3,
+        backgroundColor: '#00000088', padding: { x: 12, y: 6 },
+      }
+    ).setScrollFactor(0).setDepth(150).setOrigin(0.5);
+
+    this.tweens.add({
+      targets: hint, alpha: 0, delay: 3000, duration: 1000,
+      onComplete: () => hint.destroy(),
+    });
   }
 
   shutdown() {

@@ -1,5 +1,8 @@
 import { Health } from '../ecs/components.js';
 import { COLORS, GAME_DURATION } from '../config.js';
+import { t } from '../i18n.js';
+
+const FONT = "'DotGothic16', monospace";
 
 export function createHUD(scene, world) {
   const barWidth = 200;
@@ -13,19 +16,33 @@ export function createHUD(scene, world) {
   const xpBar = scene.add.graphics().setScrollFactor(0).setDepth(101);
 
   const levelText = scene.add.text(barWidth + margin * 2 + 10, margin, 'Lv.1', {
-    fontSize: '18px', fontFamily: 'monospace', color: '#ffffff',
+    fontSize: '18px', fontFamily: FONT, color: '#ffffff',
     stroke: '#000000', strokeThickness: 3,
   }).setScrollFactor(0).setDepth(101);
 
   const timerText = scene.add.text(scene.cameras.main.width - margin, margin, '00:00', {
-    fontSize: '18px', fontFamily: 'monospace', color: '#ffffff',
+    fontSize: '18px', fontFamily: FONT, color: '#ffffff',
     stroke: '#000000', strokeThickness: 3,
   }).setScrollFactor(0).setDepth(101).setOrigin(1, 0);
 
-  const killText = scene.add.text(scene.cameras.main.width - margin, margin + 24, 'Kills: 0', {
-    fontSize: '14px', fontFamily: 'monospace', color: '#ffcc00',
+  const killText = scene.add.text(scene.cameras.main.width - margin, margin + 24, '', {
+    fontSize: '14px', fontFamily: FONT, color: '#ffcc00',
     stroke: '#000000', strokeThickness: 2,
   }).setScrollFactor(0).setDepth(101).setOrigin(1, 0);
+
+  // Ultimate cooldown gauge — bottom center
+  const ultGfx = scene.add.graphics().setScrollFactor(0).setDepth(101);
+  const camW = scene.cameras.main.width;
+  const camH = scene.cameras.main.height;
+  const ultBarW = 160;
+  const ultBarH = 12;
+  const ultX = (camW - ultBarW) / 2;
+  const ultY = camH - 30;
+
+  const ultLabel = scene.add.text(camW / 2, ultY - 14, '必殺技 [SPACE]', {
+    fontSize: '11px', fontFamily: FONT, color: '#cccccc',
+    stroke: '#000000', strokeThickness: 2,
+  }).setScrollFactor(0).setDepth(101).setOrigin(0.5);
 
   return {
     update() {
@@ -53,7 +70,7 @@ export function createHUD(scene, world) {
       xpBar.fillRoundedRect(margin, margin + barHeight + 2, barWidth * xpRatio, xpBarHeight, 2);
 
       // Level
-      levelText.setText(`Lv.${world.player.level}`);
+      levelText.setText(t('hud.level', { level: world.player.level }));
 
       // Timer
       const elapsed = Math.min(world.time.elapsed, GAME_DURATION);
@@ -63,7 +80,39 @@ export function createHUD(scene, world) {
       timerText.setText(`${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`);
 
       // Kills
-      killText.setText(`Kills: ${world.player.kills}`);
+      killText.setText(t('hud.kills', { kills: world.player.kills }));
+
+      // Ultimate gauge
+      ultGfx.clear();
+      const ultCd = world.player.ultCooldown || 15000;
+      const ultTimer = world.player.ultTimer || 0;
+      const ultActive = world.player.ultActive || 0;
+
+      // Background
+      ultGfx.fillStyle(0x333333, 0.8);
+      ultGfx.fillRoundedRect(ultX, ultY, ultBarW, ultBarH, 3);
+
+      if (ultActive > 0) {
+        // Active — gold pulsing bar
+        ultGfx.fillStyle(0xFFD700, 0.9);
+        ultGfx.fillRoundedRect(ultX, ultY, ultBarW, ultBarH, 3);
+        ultLabel.setText('⚡ 発動中！');
+        ultLabel.setColor('#FFD700');
+      } else if (ultTimer <= 0) {
+        // Ready
+        ultGfx.fillStyle(0x44FF44, 0.9);
+        ultGfx.fillRoundedRect(ultX, ultY, ultBarW, ultBarH, 3);
+        ultLabel.setText('必殺技 [SPACE] ✓');
+        ultLabel.setColor('#44FF44');
+      } else {
+        // Charging
+        const ratio = 1 - (ultTimer / ultCd);
+        ultGfx.fillStyle(0x6666FF, 0.8);
+        ultGfx.fillRoundedRect(ultX, ultY, ultBarW * ratio, ultBarH, 3);
+        const secLeft = Math.ceil(ultTimer / 1000);
+        ultLabel.setText(`必殺技 ${secLeft}秒`);
+        ultLabel.setColor('#8888FF');
+      }
     },
 
     destroy() {
@@ -73,6 +122,8 @@ export function createHUD(scene, world) {
       levelText.destroy();
       timerText.destroy();
       killText.destroy();
+      ultGfx.destroy();
+      ultLabel.destroy();
     },
   };
 }

@@ -1,12 +1,14 @@
-# 🌶️ 胡椒家防衛戦 — Game Design Document v1.0
+# 🌶️ 胡椒家防衛戦 — Game Design Document v1.1
 
 > **Genre:** Vampire Survivors-like / Auto-battler Roguelite
-> **Platform:** Web (HTML5) — 靜態部署於娜娜工坊
-> **Art Style:** 16-bit Pixel Art
+> **Platform:** PC（デスクトップブラウザ）専用 — GitHub Pages デプロイ
+> **Language:** 日本語（DotGothic16 フォント）
+> **Art Style:** 16-bit Pixel Art（プロシージャルグラフィックス）
 > **Engine:** Phaser 3 + bitECS
 > **Session Length:** 15 分鐘 / 局
-> **Status:** Pre-production
+> **Status:** Sprint 2 完了 — マウスエイム + 手動射撃 + 必殺技 + 日本語化
 > **Created:** 2026-03-30
+> **Updated:** 2026-04-01
 
 ---
 
@@ -29,6 +31,33 @@
 - **角色即記憶點** — 玩起來感受截然不同，不是換皮
 - **驚喜感** — 進化合成有隱藏路線，發現的瞬間要興奮
 - **輕量可及** — 網頁打開就玩，不需安裝
+
+### 1.5 操作設計（Sprint 2 確定）
+
+| 操作 | 説明 |
+|------|------|
+| WASD | 移動 |
+| マウスカーソル | 射撃方向・照準（十字線カーソル） |
+| 左クリック / 長押し | 武器の fireMode に依存（semi=単発 / hold=連射） |
+| スペースキー | 必殺技（キャラ固有・クールダウン 15 秒） |
+| ESC | ポーズメニュー |
+
+**武器の fireMode：**
+
+| fireMode | 動作 | 左クリック |
+|----------|------|-----------|
+| `auto` | 自動射撃（従来の VS 式） | 不要 |
+| `semi` | 単発高火力 | クリック = 1 発 |
+| `hold` | 長押し連射 | 長押し = 連射 |
+| `aimed` | マウス方向に自動発射 | 方向のみ影響 |
+
+### 1.6 必殺技（Ultimate）
+
+| キャラ | 必殺技名 | 効果 | クールダウン |
+|--------|----------|------|-------------|
+| ムーさん | 全砲台齊射 | 8 方向高速弾幕 3 秒間 | 15 秒 |
+| にゃおぬこ | 瞬間突進 | マウス方向にダッシュ＋AOE ダメージ | 15 秒 |
+| あばれんぼー | 尾巴無限伸長 | 半径 200px AOE 3 秒間 | 15 秒 |
 
 ---
 
@@ -301,9 +330,11 @@
 所有遊戲內容由 JSON 驅動，修改不需改代碼。
 
 ### 9.4 部署
-- 靜態 HTML/JS/CSS
-- 娜娜工坊 `Playground/pepper-house-survivors/`
-- 入口：`index.html`
+- 靜態 HTML/JS/CSS（Vite ビルド）
+- GitHub Pages（自動 CI/CD — `.github/workflows/` 配置済み）
+- PC 専用、モバイル非対応
+- 全 UI 日本語（DotGothic16 フォント、Google Fonts CDN）
+- i18n は軽量辞書方式（`src/i18n.js` + `public/data/ja.json`）
 
 ---
 

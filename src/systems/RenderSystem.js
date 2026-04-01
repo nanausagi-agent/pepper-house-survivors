@@ -1,5 +1,5 @@
 import { defineQuery, hasComponent } from 'bitecs';
-import { Position, Player, Enemy, Projectile, Pickup, Dead, Health } from '../ecs/components.js';
+import { Position, Player, Enemy, Projectile, Pickup, Dead, Health, AimAngle } from '../ecs/components.js';
 import { COLORS } from '../config.js';
 
 const ENEMY_COLORS = [
@@ -18,6 +18,9 @@ const pickupQuery = defineQuery([Pickup, Position]);
 
 export function createRenderSystem(scene, world) {
   const sprites = new Map();
+
+  // Aim line graphics (world space, follows player)
+  const aimLine = scene.add.graphics().setDepth(9);
 
   function getOrCreateSprite(eid, type) {
     if (sprites.has(eid)) return sprites.get(eid);
@@ -56,21 +59,35 @@ export function createRenderSystem(scene, world) {
   function drawPlayer(gfx, eid) {
     gfx.clear();
     const color = world.player.color || COLORS.player.moo;
+
+    // Get aim angle for directional indicator
+    const angle = AimAngle.angle[eid] || 0;
+    const facingLeft = Math.abs(angle) > Math.PI / 2;
+
     // Body
     gfx.fillStyle(color, 1);
     gfx.fillCircle(0, 0, 14);
-    // Direction indicator
-    const dirX = world.input.x || 0;
-    const dirY = world.input.y || 0;
-    if (dirX !== 0 || dirY !== 0) {
-      gfx.fillStyle(0xFFFFFF, 0.9);
-      const len = Math.sqrt(dirX * dirX + dirY * dirY);
-      gfx.fillCircle((dirX / (len || 1)) * 10, (dirY / (len || 1)) * 10, 4);
-    }
+
+    // Direction indicator — points toward mouse
+    gfx.fillStyle(0xFFFFFF, 0.9);
+    gfx.fillCircle(Math.cos(angle) * 10, Math.sin(angle) * 10, 4);
+
+    // Eyes — flip based on aim direction
+    const eyeX = facingLeft ? -4 : 4;
+    gfx.fillStyle(0x000000, 0.8);
+    gfx.fillCircle(eyeX - 2, -4, 2);
+    gfx.fillCircle(eyeX + 4, -4, 2);
+
     // Invuln flash
     if (Health.invulnTimer[eid] > 0) {
       gfx.fillStyle(0xFFFFFF, 0.4);
       gfx.fillCircle(0, 0, 16);
+    }
+
+    // Ultimate active glow
+    if (world.player.ultActive > 0) {
+      gfx.lineStyle(3, 0xFFD700, 0.6 + Math.sin(Date.now() * 0.01) * 0.3);
+      gfx.strokeCircle(0, 0, 20);
     }
   }
 
@@ -80,9 +97,7 @@ export function createRenderSystem(scene, world) {
     const color = ENEMY_COLORS[tier] || COLORS.enemy.grunt_a;
     const radius = 7 + tier * 2;
     gfx.fillStyle(color, 1);
-    // Square-ish enemies for visual distinction
     gfx.fillRect(-radius, -radius, radius * 2, radius * 2);
-    // Eyes
     gfx.fillStyle(0xFFFFFF, 0.9);
     gfx.fillCircle(-3, -3, 2);
     gfx.fillCircle(3, -3, 2);
@@ -99,7 +114,6 @@ export function createRenderSystem(scene, world) {
   function drawPickup(gfx) {
     gfx.clear();
     gfx.fillStyle(COLORS.xpGem, 1);
-    // Diamond shape
     gfx.fillPoints([
       { x: 0, y: -5 },
       { x: 5, y: 0 },
@@ -119,6 +133,22 @@ export function createRenderSystem(scene, world) {
         s.gfx.x = Position.x[eid];
         s.gfx.y = Position.y[eid];
         drawPlayer(s.gfx, eid);
+
+        // Draw aim line for aimed weapons
+        aimLine.clear();
+        if (world.player.usesAim) {
+          const angle = AimAngle.angle[eid] || 0;
+          const px = Position.x[eid];
+          const py = Position.y[eid];
+          const len = 100;
+          aimLine.lineStyle(1, 0xffffff, 0.15);
+          aimLine.lineBetween(
+            px + Math.cos(angle) * 18,
+            py + Math.sin(angle) * 18,
+            px + Math.cos(angle) * len,
+            py + Math.sin(angle) * len
+          );
+        }
       }
 
       // Enemies
@@ -177,6 +207,7 @@ export function createRenderSystem(scene, world) {
         s.gfx.destroy();
       }
       sprites.clear();
+      aimLine.destroy();
     },
   };
 

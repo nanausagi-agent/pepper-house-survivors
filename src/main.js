@@ -3,6 +3,7 @@ import { BootScene } from './scenes/BootScene.js';
 import { MenuScene } from './scenes/MenuScene.js';
 import { GameScene } from './scenes/GameScene.js';
 import { ResultScene } from './scenes/ResultScene.js';
+import { PauseScene } from './scenes/PauseScene.js';
 import { GAME_WIDTH, GAME_HEIGHT } from './config.js';
 
 const config = {
@@ -18,7 +19,7 @@ const config = {
       debug: false,
     },
   },
-  scene: [BootScene, MenuScene, GameScene, ResultScene],
+  scene: [BootScene, MenuScene, GameScene, ResultScene, PauseScene],
   scale: {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
